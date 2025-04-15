@@ -60,6 +60,7 @@ public class DefiJeuActivity extends AppCompatActivity {
         GameUtils.createGridUI(this, gridLayout, tileViews);
         resetGame();
         startTimer();
+        GameUtils.incrementTotalGames(this);
     }
 
     @Override
@@ -88,12 +89,28 @@ public class DefiJeuActivity extends AppCompatActivity {
         targetScoreView.setText("Cible: " + targetScore);
     }
 
+    private void showResultDialog(int iconResId, String title, String message) {
+        new AlertDialog.Builder(this)
+                .setIcon(iconResId)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    Intent intent = new Intent(this, MenuActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .setCancelable(false)
+                .show();
+    }
+
     private void checkGameState() {
+        GameUtils.incrementStatistics(this, score);
         if (score >= targetScore) {
-            showResultDialog("Good","Défi Réussi.");
+            showResultDialog(R.drawable.success, "Défi réussi !","Tu as atteint l'objectif.");
             if (countDownTimer != null) countDownTimer.cancel();
         } else if (isGameOver()) {
-            showResultDialog("Game Over","Défi Echoué.");
+            showResultDialog(R.drawable.faillure, "Défi échoué !","Tu n’as pas atteint l’objectif.");
             if (countDownTimer != null) countDownTimer.cancel();
         }
     }
@@ -109,21 +126,6 @@ public class DefiJeuActivity extends AppCompatActivity {
         return true;
     }
 
-    private void showResultDialog(String title, String message) {
-        new AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", (dialog, which) -> {
-                    Intent intent = new Intent(this, MenuActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                    finish();
-                })
-                .setCancelable(false)
-                .show();
-    }
-
-
     private void startTimer() {
         countDownTimer = new CountDownTimer(timeLimit * 1000L, 1000) {
             @Override
@@ -134,10 +136,12 @@ public class DefiJeuActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
+                GameUtils.incrementStatistics(DefiJeuActivity.this, score);
                 if (score < targetScore) {
-                    showResultDialog("Game Over","Temps écoulé ! Défi échoué.");
+                    showResultDialog(R.drawable.faillure,"Défi échoué !"," Tu n’as pas atteint l’objectif à temps...");
                 } else {
-                    showResultDialog("Good","Défi Réussi.");                }
+                    showResultDialog(R.drawable.success, "Défi réussi !","Tu as atteint l'objectif.");
+                }
             }
         }.start();
     }

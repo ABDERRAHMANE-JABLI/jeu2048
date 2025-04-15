@@ -1,9 +1,12 @@
 package com.example.jeu2048;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.widget.GridLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +78,7 @@ public class GameUtils {
 
         if (!empty.isEmpty()) {
             int[] pos = empty.get(new Random().nextInt(empty.size()));
-            grid[pos[0]][pos[1]] = new Random().nextInt(10) == 0 ? 4 : 2;
+            grid[pos[0]][pos[1]] = new Random().nextBoolean() ? 2 : 4;
         }
     }
 
@@ -212,4 +215,20 @@ public class GameUtils {
         if (moved) callback.onScoreUpdated(score[0]);
         return moved;
     }
+
+    public static void incrementStatistics(Context context, int currentScore) {
+        SharedPreferences prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("total_score", prefs.getInt("total_score", 0) + currentScore);
+        editor.apply();
+    }
+
+    public static void incrementTotalGames(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("total_games", prefs.getInt("total_games", 0) + 1);
+        editor.apply();
+    }
+
+
 }

@@ -60,6 +60,20 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button tutorial = findViewById(R.id.btn_tutorial);
+        tutorial.setOnClickListener(v -> {
+            stopService(new Intent(this, MusicService.class));
+            musicIcon.setImageResource(R.drawable.baseline_music_off_24);
+            Intent intent = new Intent(MenuActivity.this, TutorialActivity.class);
+            startActivity(intent);
+        });
+
+        Button staticts = findViewById(R.id.btn_statistics);
+        staticts.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuActivity.this, StatictsActivity.class);
+            startActivity(intent);
+        });
+
 
     }
 
