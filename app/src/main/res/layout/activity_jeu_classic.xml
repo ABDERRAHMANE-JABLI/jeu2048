@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D1C6A0"
+    tools:context=".JeuClassicActivity">
+
+    <LinearLayout
+        android:id="@+id/centeredContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Titre -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jeu Classic"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#776E65"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp" />
+
+        <!-- Scores -->
+        <LinearLayout
+            android:id="@+id/scorePanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="Score: 0"
+                android:textColor="#FFFFFF"
+                android:background="#BBADA0"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/best_score"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:gravity="center"
+                android:text="Best: 0"
+                android:textColor="#FFFFFF"
+                android:background="#776E65"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Boutons -->
+        <LinearLayout
+            android:id="@+id/buttonPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/btn_new"
+                android:text="NEW"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="12dp"
+                android:backgroundTint="#725800"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_undo"
+                android:text="UNDO"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:backgroundTint="#f2dc93"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <!-- Message -->
+        <TextView
+            android:id="@+id/instruction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Assemble les nombres et atteins la tuile 2048"
+            android:textSize="14sp"
+            android:textColor="#776E65"
+            android:layout_marginTop="16dp" />
+
+        <!-- Grille -->
+        <GridLayout
+            android:id="@+id/grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rowCount="4"
+            android:columnCount="4"
+            android:layout_marginTop="16dp"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

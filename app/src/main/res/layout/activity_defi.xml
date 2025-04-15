@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="#F7F4E9">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Défi Journalier"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"/>
+
+    <EditText
+        android:id="@+id/input_target_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Score à atteindre (ex: 512)"
+        android:inputType="number"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/input_time_limit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Temps limite en secondes (ex: 60)"
+        android:inputType="number"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btn_start_defi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Commencer le défi"
+        android:backgroundTint="#F67C5F"
+        android:textColor="#FFFFFF"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"/>
+</LinearLayout>
