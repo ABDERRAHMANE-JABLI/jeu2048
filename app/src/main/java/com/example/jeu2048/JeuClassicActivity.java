@@ -50,7 +50,6 @@ public class JeuClassicActivity extends AppCompatActivity {
         GameUtils.createGridUI(this, gridLayout, tileViews);
         loadGame();
         GameUtils.incrementTotalGames(this);
-        GameUtils.incrementStatistics(this, bestScore);
     }
 
     @Override
@@ -64,6 +63,13 @@ public class JeuClassicActivity extends AppCompatActivity {
         super.onPause();
         saveGame();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GameUtils.incrementTotalScore(this, score);
+    }
+
 
     private void resetGame() {
         score = 0;
@@ -81,9 +87,9 @@ public class JeuClassicActivity extends AppCompatActivity {
     private void updateScore() {
         scoreView.setText("Score: " + score);
         bestScoreView.setText("Best: " + bestScore);
-        GameUtils.incrementStatistics(this, score);
         if (score > bestScore) {
             bestScore = score;
+            GameUtils.incrementBestScore(this, bestScore);
             bestScoreView.setText("Best: " + bestScore);
         }
     }
@@ -114,6 +120,7 @@ public class JeuClassicActivity extends AppCompatActivity {
     }
 
     private void showWinDialog() {
+        GameUtils.incrementBestScore(this, bestScore);
         new AlertDialog.Builder(this)
                 .setIcon(R.drawable.success)
                 .setTitle("Victoire !")
@@ -124,6 +131,7 @@ public class JeuClassicActivity extends AppCompatActivity {
     }
 
     private void showGameOverDialog() {
+        GameUtils.incrementBestScore(this, bestScore);
         new AlertDialog.Builder(this)
                 .setIcon(R.drawable.faillure)
                 .setTitle("Game Over")
@@ -238,15 +246,16 @@ public class JeuClassicActivity extends AppCompatActivity {
                 .edit()
                 .putString("grid", sb.toString())
                 .putInt("score", score)
-                .putInt("best", bestScore)
                 .apply();
+        GameUtils.incrementBestScore(this, bestScore);
     }
 
     private void loadGame() {
+        //current score et la grille sont stockés dans shared preferences
         String gridData = getSharedPreferences("game", MODE_PRIVATE)
                 .getString("grid", null);
         score = getSharedPreferences("game", MODE_PRIVATE).getInt("score", 0);
-        bestScore = getSharedPreferences("game", MODE_PRIVATE).getInt("best", 0);
+        bestScore = GameUtils.getBestScore(this);
 
         if (gridData != null) {
             String[] values = gridData.split(",");

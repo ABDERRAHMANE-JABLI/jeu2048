@@ -216,18 +216,26 @@ public class GameUtils {
         return moved;
     }
 
-    public static void incrementStatistics(Context context, int currentScore) {
-        SharedPreferences prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("total_score", prefs.getInt("total_score", 0) + currentScore);
-        editor.apply();
+    public static void incrementTotalScore(Context context, int score) {
+        databaseHandler db = new databaseHandler(context);
+        int currentTotalScore = db.getTotalScore();
+        db.updateTotalScore(currentTotalScore + score);
+    }
+
+    public static void incrementBestScore(Context context, int score) {
+        databaseHandler db = new databaseHandler(context);
+        db.updateBestScore(score);
+    }
+
+    public static int getBestScore(Context context) {
+        databaseHandler db = new databaseHandler(context);
+        return db.getBestScore();
     }
 
     public static void incrementTotalGames(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences("game", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putInt("total_games", prefs.getInt("total_games", 0) + 1);
-        editor.apply();
+        databaseHandler db = new databaseHandler(context);
+        int currentGames = db.getTotalGames();
+        db.updateTotalGames(currentGames + 1);
     }
 
 

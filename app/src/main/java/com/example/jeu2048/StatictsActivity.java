@@ -21,15 +21,15 @@ public class StatictsActivity extends AppCompatActivity {
         totalScoreText = findViewById(R.id.text_total_score);
         avgScoreText = findViewById(R.id.text_score_moy);
 
-        SharedPreferences prefs = getSharedPreferences("game", Context.MODE_PRIVATE);
-        int best = prefs.getInt("best", 0);
-        int totalGames = prefs.getInt("total_games", 0);
-        int totalScore = prefs.getInt("total_score", 0);
+        databaseHandler db = new databaseHandler(this);
+        int best = db.getBestScore();
+        int totalGames = db.getTotalGames();
+        int totalScore = db.getTotalScore();
         int avgScore = totalGames > 0 ? totalScore / totalGames : 0;
 
-        bestScoreText.setText(""+best);
-        totalGamesText.setText(""+totalGames);
-        totalScoreText.setText(""+totalScore);
-        avgScoreText.setText(""+avgScore);
+        bestScoreText.setText(String.valueOf(best));
+        totalGamesText.setText(String.valueOf(totalGames));
+        totalScoreText.setText(String.valueOf(totalScore));
+        avgScoreText.setText(String.valueOf(avgScore));
     }
 }

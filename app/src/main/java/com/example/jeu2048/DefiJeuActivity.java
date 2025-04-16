@@ -105,7 +105,7 @@ public class DefiJeuActivity extends AppCompatActivity {
     }
 
     private void checkGameState() {
-        GameUtils.incrementStatistics(this, score);
+        GameUtils.incrementTotalScore(this, score);
         if (score >= targetScore) {
             showResultDialog(R.drawable.success, "Défi réussi !","Tu as atteint l'objectif.");
             if (countDownTimer != null) countDownTimer.cancel();
@@ -136,7 +136,7 @@ public class DefiJeuActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                GameUtils.incrementStatistics(DefiJeuActivity.this, score);
+                GameUtils.incrementTotalScore(DefiJeuActivity.this, score);
                 if (score < targetScore) {
                     showResultDialog(R.drawable.faillure,"Défi échoué !"," Tu n’as pas atteint l’objectif à temps...");
                 } else {
