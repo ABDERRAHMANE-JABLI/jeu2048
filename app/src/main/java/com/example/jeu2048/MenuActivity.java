@@ -33,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
             return insets;
         });
 
-        // fonctionnalités, activer désactiver la music :
+        // play on / off music
         musicIcon = findViewById(R.id.musicIcon);
         musicIcon.setOnClickListener(v -> {
             if (isMusicPlaying) {
@@ -54,12 +54,14 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // page Jeu Mode Défi :
         Button playDefiBtn = findViewById(R.id.btn_play_defi);
         playDefiBtn.setOnClickListener(v -> {
             Intent intent = new Intent(MenuActivity.this, DefiActivity.class);
             startActivity(intent);
         });
 
+        // page Tutoriel :
         Button tutorial = findViewById(R.id.btn_tutorial);
         tutorial.setOnClickListener(v -> {
             stopService(new Intent(this, MusicService.class));
@@ -68,6 +70,7 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //Page Statistiques
         Button staticts = findViewById(R.id.btn_statistics);
         staticts.setOnClickListener(v -> {
             Intent intent = new Intent(MenuActivity.this, StatictsActivity.class);

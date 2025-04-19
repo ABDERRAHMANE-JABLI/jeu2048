@@ -3,6 +3,7 @@ package com.example.jeu2048;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +33,13 @@ public class TutorialActivity extends AppCompatActivity {
             Intent intent = new Intent(TutorialActivity.this, JeuClassicActivity.class);
             startActivity(intent);
             startService(new Intent(this, MusicService.class));
+        });
+
+        TextView menuLink = findViewById(R.id.menu_link);
+        menuLink.setOnClickListener(v -> {
+            Intent intent = new Intent(TutorialActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 

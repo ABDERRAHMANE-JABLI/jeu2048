@@ -1,8 +1,10 @@
 package com.example.jeu2048;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,5 +33,27 @@ public class StatictsActivity extends AppCompatActivity {
         totalGamesText.setText(String.valueOf(totalGames));
         totalScoreText.setText(String.valueOf(totalScore));
         avgScoreText.setText(String.valueOf(avgScore));
+
+        Button btnShare = findViewById(R.id.btn_share_réseau);
+        btnShare.setOnClickListener(v -> {
+            String message = "Mon meilleur score sur 2048 est : " + best + " points ! Essaie de me battre !";
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+            startActivity(Intent.createChooser(shareIntent, "Partager via"));
+        });
+
+        /*
+        TextView menuLink = findViewById(R.id.menu_link);
+menuLink.setOnClickListener(v -> {
+    Intent intent = new Intent(JeuClassicActivity.this, MenuActivity.class);
+    startActivity(intent);
+    finish(); // optionnel si tu veux fermer l'activité actuelle
+});
+
+        * */
+
     }
+
+
 }

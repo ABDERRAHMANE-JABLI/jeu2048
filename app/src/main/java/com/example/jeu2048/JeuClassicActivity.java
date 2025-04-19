@@ -1,4 +1,5 @@
 package com.example.jeu2048;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -50,6 +51,14 @@ public class JeuClassicActivity extends AppCompatActivity {
         GameUtils.createGridUI(this, gridLayout, tileViews);
         loadGame();
         GameUtils.incrementTotalGames(this);
+
+        TextView menuLink = findViewById(R.id.menu_link);
+        menuLink.setOnClickListener(v -> {
+            Intent intent = new Intent(JeuClassicActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
     }
 
     @Override
@@ -255,6 +264,7 @@ public class JeuClassicActivity extends AppCompatActivity {
         String gridData = getSharedPreferences("game", MODE_PRIVATE)
                 .getString("grid", null);
         score = getSharedPreferences("game", MODE_PRIVATE).getInt("score", 0);
+        // mais le bestScore le ScoreTotal sont stocké dans la base de donnée SQLite
         bestScore = GameUtils.getBestScore(this);
 
         if (gridData != null) {

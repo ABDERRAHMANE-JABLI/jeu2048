@@ -61,6 +61,14 @@ public class DefiJeuActivity extends AppCompatActivity {
         resetGame();
         startTimer();
         GameUtils.incrementTotalGames(this);
+
+        TextView menuLink = findViewById(R.id.menu_link);
+        menuLink.setOnClickListener(v -> {
+            Intent intent = new Intent(DefiJeuActivity.this, MenuActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
     }
 
     @Override

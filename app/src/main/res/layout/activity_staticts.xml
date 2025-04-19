@@ -1,98 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/statistics_root"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp"
-    android:background="#D1C6A0">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/statistics_root"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#D1C6A0">
 
+<!-- Bouton Menu en haut à droite -->
     <TextView
-        android:id="@+id/title_stats"
+        android:id="@+id/menu_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Statistiques"
-        android:textSize="35sp"
+        android:text="Menu"
+        android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginBottom="32dp" />
+        android:textColor="#000000"
+        android:padding="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:focusable="true" />
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:shrinkColumns="1"
-        android:stretchColumns="1">
+    <LinearLayout
+        android:id="@+id/statistics_li"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="24dp"
+        android:background="#D1C6A0">
 
-        <TableRow android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Meilleur score :"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:paddingEnd="16dp" />
+        <TextView
+            android:id="@+id/title_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistiques"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="32dp" />
 
-            <TextView
-                android:id="@+id/text_best_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="22sp"
-                android:gravity="end" />
-        </TableRow>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="1"
+            android:stretchColumns="1">
 
-        <TableRow android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Parties jouées :"
-                android:textSize="22sp"
-                android:paddingEnd="16dp" />
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Meilleur score :"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:paddingEnd="16dp" />
 
-            <TextView
-                android:id="@+id/text_total_games"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="22sp"
-                android:gravity="end" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/text_best_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="22sp"
+                    android:gravity="end" />
+            </TableRow>
 
-        <TableRow android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Score cumulé :"
-                android:textSize="22sp"
-                android:paddingEnd="16dp" />
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parties jouées :"
+                    android:textSize="22sp"
+                    android:paddingEnd="16dp" />
 
-            <TextView
-                android:id="@+id/text_total_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="22sp"
-                android:gravity="end" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/text_total_games"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="22sp"
+                    android:gravity="end" />
+            </TableRow>
 
-        <TableRow android:gravity="center_vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Score moyen :"
-                android:textSize="22sp"
-                android:paddingEnd="16dp" />
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score cumulé :"
+                    android:textSize="22sp"
+                    android:paddingEnd="16dp" />
 
-            <TextView
-                android:id="@+id/text_score_moy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textSize="22sp"
-                android:gravity="end" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/text_total_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="22sp"
+                    android:gravity="end" />
+            </TableRow>
 
-    </TableLayout>
+            <TableRow android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Score moyen :"
+                    android:textSize="22sp"
+                    android:paddingEnd="16dp" />
 
-</LinearLayout>
+                <TextView
+                    android:id="@+id/text_score_moy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="22sp"
+                    android:gravity="end" />
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btn_share_réseau"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partager sur ..."
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#6F470A"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
